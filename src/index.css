@@ -57,5 +57,16 @@ header {
   border-radius: 15px;
   width: 193px;
   height: 52px;
+}
 
+/* Questions section */
+.choice-pill {
+  border-radius: 8px;
+  width: 66px;
+  height: 21px;
+  border: 0.79px solid #4D5B9E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .8rem;
 }
