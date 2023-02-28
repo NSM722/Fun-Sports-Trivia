@@ -1,6 +1,6 @@
 # Quizzical - A Trivia App
 
-This app pulls seven Sports trivia questions from [Open Trivia Database](https://opentdb.com/ "Read Docs") and displays them as a short quiz
+This app pulls seven trivia questions of random topics from [Open Trivia Database](https://opentdb.com/ "Read Docs") and displays them as a short quiz
 
  - A user can make a selection of answers then check the answers at the end.
 
