@@ -1,24 +1,55 @@
-import React from 'react'
-import Home from './components/Home'
+import React, { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
+import Home from './components/Home';
 
 function App() {
-  // const [questions, setQuestions] = useState([])
+  const [apiData, setApiData] = useState([])
+  const [choices, setChoices] = useState([])
+  const [isQuizOver, setIsQuizOver] = useState(true)
 
-  // useEffect(() => {
-  //   fetch(`https://opentdb.com/api.php?amount=7&category=21&difficulty=medium&type=boolean`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setQuestions(data.results)
-  //     })
-  // }, [])
+  function newApiData(dataArr) {
+    const newData = dataArr.map(item => {
+      return {
+        id: nanoid(),
+        ...item,
+        choices: getMultipleChoices(item)
+      }
+    });
+    return newData
+  }
 
-  // const introElements = questions.map((question, index) => (
-  //   <p key={index}>{question.question}</p>
-  // ))
+  function getMultipleChoices(data) {
+    let answers = [data.correct_answer, ...data.incorrect_answers];
+    let sortedAnswers = answers.sort()
+    return sortedAnswers
+  }
+
+  useEffect(() => {
+    fetch(`https://opentdb.com/api.php?amount=7&category=21&type=multiple`)
+      .then(response => response.json())
+      .then(data => {
+        const newDataObj = newApiData(data.results)
+        setApiData(newDataObj)
+      })
+  }, [])
+
+  const quizElements = apiData.map(element => (
+    <section key={element.id}>
+      <h2>{element.question}</h2>
+      <div>
+        <p className='choice-pill'>{element.difficulty}</p>
+      </div>
+    </section>
+  ))
+
+  function startQuiz() {
+    console.log('start button is clicked')
+  }
 
   return (
     <>
-      <Home />
+      <Home handleClick={startQuiz} />
+      {apiData.length > 0 && quizElements}
     </>
   );
 }
