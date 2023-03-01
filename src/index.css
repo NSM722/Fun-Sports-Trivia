@@ -13,11 +13,18 @@ body {
   background-color: #F9F9F9;
   color: #293264;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 input,
 button {
   font: inherit;
+}
+
+.container {
+  max-width: 100%;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .btn {
@@ -30,6 +37,8 @@ button {
   font-size: 0.64rem;
   border: none;
   cursor: pointer;
+  margin-top: 1.5em;
+  font-size: .8rem;
 }
 
 header {
@@ -57,16 +66,31 @@ header {
   border-radius: 15px;
   width: 193px;
   height: 52px;
+
 }
 
 /* Questions section */
+.quiz {
+  border-bottom: 2px solid #DBDEF0;
+  transform: rotate(-0.05deg);
+}
+
+.choices-pills-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
 .choice-pill {
   border-radius: 8px;
-  width: 66px;
-  height: 21px;
+  max-width: 100%;
+  width: 170px;
+  height: auto;
+  padding: .2em .5em;
   border: 0.79px solid #4D5B9E;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: .8rem;
+  cursor: pointer;
 }
