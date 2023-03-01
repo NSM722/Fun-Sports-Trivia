@@ -12,7 +12,7 @@ function App() {
   function newApiData(dataArr) {
     const newData = dataArr.map(item => {
       return {
-        id: 1,
+        id: nanoid(),
         ...item,
         choices: getMultipleChoices(item),
         isSelected: false
@@ -60,12 +60,12 @@ function App() {
       })
   }, [])
 
-  const quizElements = apiData.map((element, index) => (
-    <section key={index} className='quiz'>
-      <h2>{element.question}</h2>
+  const quizElements = apiData.map(({ id, question, choices }) => (
+    <section key={id} className='quiz'>
+      <h2>{question}</h2>
       <div className='choices-pills-wrapper'>
         {
-          element.choices.map(choice => (
+          choices.map(choice => (
             <p key={choice} className='choice-pill'>{choice}</p>
           ))
         }
