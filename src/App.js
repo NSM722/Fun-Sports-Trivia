@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import he from 'he';
 import Home from './components/Home';
+import Question from './components/Question';
 
 function App() {
   const [apiData, setApiData] = useState([])
   const [choices, setChoices] = useState([])
   const [isGameStarted, setIsGameStarted] = useState(false)
+  const [isSelected, setIsSelected] = useState(false)
 
   // converts dataArr to an array of objects
   function newApiData(dataArr) {
@@ -60,24 +62,26 @@ function App() {
       })
   }, [])
 
-  const quizElements = apiData.map(({ id, question, choices }) => (
-    <section key={id} className='quiz'>
-      <h2>{question}</h2>
-      <div className='choices-pills-wrapper'>
-        {
-          choices.map(choice => (
-            <p key={choice} className='choice-pill'>{choice}</p>
-          ))
-        }
-      </div>
-    </section>
-  ))
-
+  // starts the quiz
   function startQuiz() {
     setTimeout(() => {
       setIsGameStarted(true)
     }, 1000)
   }
+
+  // manipulates the isSelected in state when an option is selected
+  function selectAnswer(id) {
+    console.log('Section ', id, ' clicked')
+  }
+
+  const quizElements = apiData.map(({ question, choices, isSelected, id }) => (
+    <Question
+      selectAnswer={() => selectAnswer(id)}
+      isSelected={isSelected}
+      question={question}
+      choices={choices}
+      key={id} />
+  ))
 
   return (
     <>
@@ -89,9 +93,7 @@ function App() {
               {quizElements}
               <button className='check-answers btn'>Check answers</button>
             </>
-
         }
-
       </main>
     </>
   );
