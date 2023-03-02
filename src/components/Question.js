@@ -14,11 +14,11 @@ function Question({ selectAnswer, question, choices, isSelected }) {
           {
             choices.map(choice => (
               <p
-                key={choice}
+                key={choice.choice_id}
                 className='choice-pill'
                 style={bgStyle}
                 onClick={selectAnswer}
-              >{choice}</p>
+              >{choice.choice}</p>
             ))
           }
         </div>
