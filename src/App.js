@@ -17,7 +17,6 @@ function App() {
         id: nanoid(),
         ...item,
         choices: getMultipleChoices(item),
-        isSelected: false
       }
     });
     return newData
@@ -26,9 +25,16 @@ function App() {
   // spreads and sorts values of the properties `data.correct_answer`
   // and data.incorrect_answers into a new array of multiple choices
   function getMultipleChoices(data) {
-    let answers = [data.correct_answer, ...data.incorrect_answers];
+    let answers = [data.correct_answer, ...data.incorrect_answers]
     let sortedAnswers = answers.sort()
-    return sortedAnswers
+    let choicesObj = sortedAnswers.map(answer => {
+      return {
+        choice_id: nanoid(),
+        choice: answer,
+        isSelected: false
+      }
+    })
+    return choicesObj
   }
 
   // getting rid of HTML entities in the API response using the lightweight `he` package
@@ -82,7 +88,7 @@ function App() {
       choices={choices}
       key={id} />
   ))
-
+  console.log(apiData)
   return (
     <>
       <main className='container'>
