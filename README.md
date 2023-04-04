@@ -2,11 +2,38 @@
 
 This app pulls seven Sports trivia questions from [Open Trivia Database](https://opentdb.com/ "Read Docs") and displays them as a short quiz
 
- - A user can make a selection of answers then check the answers at the end.
+- A user can make a selection of answers then check the answers at the end.
 
- - The App will score the quiz and give feedback, the user will be allowed to play again
- 
+- The App will score the quiz and give feedback, the user will be allowed to play again
+
 ---
+
+## `he` Lightweight Package
+
+Installation via npm:
+
+```
+npm install he
+```
+
+Gets rid of HTML entities in the API response
+[JSON.parse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse "Read Docs") expects a string as its first argument, the second argument is a **callbackFn()** called `reviver`
+
+Use the decode() function of the `he` package to decode HTML entities of `values` of typeof `string`
+
+```javascript
+import he from "he";
+
+function decodeHtmlEntity(jsonData) {
+  const decodedData = JSON.parse(jsonData, (key, value) => {
+    if (typeof value === "string") {
+      return he.decode(value);
+    }
+    return value;
+  });
+  return decodedData;
+}
+```
 
 ## Getting Started with Create React App
 
