@@ -1,11 +1,6 @@
 import React from 'react';
 
-function Question({ selectAnswer, question, choices, isSelected }) {
-  // bg color style for each paragraph in the quizElements
-  const bgStyle = {
-    backgroundColor: isSelected ? '#D6DBF5' : ''
-  }
-
+function Question({ selectAnswer, question, choices, parentID }) {
   return (
     <>
       <section className='quiz'>
@@ -16,8 +11,8 @@ function Question({ selectAnswer, question, choices, isSelected }) {
               <p
                 key={choice.choice_id}
                 className='choice-pill'
-                style={bgStyle}
-                onClick={selectAnswer}
+                style={{backgroundColor: choice.isSelected ? '#D6DBF5' : ''}}
+                onClick={(e) => selectAnswer(e, parentID)}
               >{choice.choice}</p>
             ))
           }
