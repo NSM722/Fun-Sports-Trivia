@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Question({ selectAnswer, question, choices, parentID }) {
+function Questions({ selectAnswer, question, choices, parentID }) {
   return (
     <>
       <section className='quiz'>
@@ -22,4 +22,4 @@ function Question({ selectAnswer, question, choices, parentID }) {
   )
 }
 
-export default Question;
+export default Questions;
