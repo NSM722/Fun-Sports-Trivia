@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { newApiData, decodeHtmlEntity } from './utils';
 import Home from './components/Home';
-import Question from './components/Question';
+import Questions from './components/Questions';
+import Answers from './components/Answers';
+
+let ANSWER_COUNT = 0;
 
 function App() {
   const [apiData, setApiData] = useState([])
-  // const [choices, setChoices] = useState([])
   const [isGameStarted, setIsGameStarted] = useState(false)
-  // const [isSelected, setIsSelected] = useState(false)
+  const [isCheckingAnswers, setIsCheckingAnswers] = useState(false)
 
   useEffect(() => {
     fetch(`https://opentdb.com/api.php?amount=7&category=21&type=multiple`)
       .then(response => response.json())
       .then(data => {
-        //   console.log
         // initialize results from the api call
         const newDataObj = newApiData(data.results)
-
+        
         // convert the api results to a string then decode it
         const decodedData = decodeHtmlEntity(JSON.stringify(newDataObj))
         setApiData(decodedData)
@@ -29,6 +30,13 @@ function App() {
     setTimeout(() => {
       setIsGameStarted(true)
     }, 1000)
+  }
+
+  // sends the user back to the home page
+  function playAgain() {
+    setTimeout(() => {
+      setIsGameStarted(false)
+    }, 500)
   }
 
   // manipulates the isSelected in state when an option is selected
@@ -47,16 +55,35 @@ function App() {
     )
   }
 
+  function checkAnswers() {
+    setIsCheckingAnswers(true)
+    apiData.forEach(element => {
+      element.choices.forEach(choice => {
+        if(choice.isSelected && choice.choice === element.correct_answer) {
+          ANSWER_COUNT += 1
+        }
+      })
+    });
+    console.log(`You scored ${ANSWER_COUNT} / ${apiData.length} correct answers`)
+  }
 
   const quizElements = apiData.map(({ question, choices, id }) => (
-
-    <Question
+    <Questions
       parentID={id}
       selectAnswer={selectAnswer}
       question={question}
       choices={choices}
       key={id} />
   ))
+
+  const answerElements = apiData.map(({ question, choices, id}) => (
+    <Answers 
+      question={question}
+      choices={choices}
+      key={id}
+    />
+  ))
+
   // console.log(apiData)
   return (
     <>
@@ -64,9 +91,25 @@ function App() {
         {
           !isGameStarted ?
             <Home handleClick={startQuiz} /> :
+          !isCheckingAnswers ? 
             <>
               {quizElements}
-              <button className='check-answers btn'>Check answers</button>
+              <button 
+              type='button'
+              className='check-answers btn'
+              onClick={() => checkAnswers()}
+              >Check answers</button>
+            </>  :
+            <>
+              {answerElements}
+              <h3>
+                {`You scored ${ANSWER_COUNT} / ${apiData.length} correct answers`}
+              </h3>
+              <button
+                type='button'
+                className='btn'
+                onClick={() => playAgain()}
+              >Play Again</button>
             </>
         }
       </main>
@@ -75,3 +118,4 @@ function App() {
 }
 
 export default App;
+
