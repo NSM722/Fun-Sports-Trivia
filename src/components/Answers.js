@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Question({ selectAnswer, question, choices, parentID }) {
+function Answers({ question, choices }) {
   return (
     <>
-      <section className='quiz'>
+      <section className='answer'>
         <h2>{question}</h2>
         <div className='choices-pills-wrapper'>
           {
@@ -11,15 +11,19 @@ function Question({ selectAnswer, question, choices, parentID }) {
               <p
                 key={choice.choice_id}
                 className='choice-pill'
-                style={{backgroundColor: choice.isSelected ? '#D6DBF5' : ''}}
-                onClick={(e) => selectAnswer(e, parentID)}
+                // style={{backgroundColor: choice.isSelected && choice.choice === parent.correct_answer ? '#94D7A2' : 'F8BCBC'}}
               >{choice.choice}</p>
             ))
           }
+          {/* <button
+            type='button'
+            className='btn'
+          >Play Again</button> */}
         </div>
       </section>
     </>
   )
 }
 
-export default Question;
+export default Answers;
+
