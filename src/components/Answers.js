@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Answers({ question, choices }) {
+function Answers({ question, choices, correctAnswer }) {
   return (
     <>
       <section className='answer'>
@@ -11,7 +11,13 @@ function Answers({ question, choices }) {
               <p
                 key={choice.choice_id}
                 className='choice-pill'
-                // style={{backgroundColor: choice.isSelected && choice.choice === parent.correct_answer ? '#94D7A2' : 'F8BCBC'}}
+                style={{
+                  backgroundColor: choice.isSelected && choice.choice === correctAnswer ? 
+                  '#94D7A2' : 
+                  choice.isSelected && choice.choice !== correctAnswer ?
+                  '#F8BCBC' :
+                  ''
+                }}
               >{choice.choice}</p>
             ))
           }
