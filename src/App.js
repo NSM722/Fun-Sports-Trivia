@@ -76,10 +76,11 @@ function App() {
       key={id} />
   ))
 
-  const answerElements = apiData.map(({ question, choices, id}) => (
+  const answerElements = apiData.map(({ question, choices, id, correct_answer }) => (
     <Answers 
       question={question}
       choices={choices}
+      correctAnswer={correct_answer}
       key={id}
     />
   ))
