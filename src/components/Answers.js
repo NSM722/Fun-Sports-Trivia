@@ -21,10 +21,6 @@ function Answers({ question, choices, correctAnswer }) {
               >{choice.choice}</p>
             ))
           }
-          {/* <button
-            type='button'
-            className='btn'
-          >Play Again</button> */}
         </div>
       </section>
     </>
