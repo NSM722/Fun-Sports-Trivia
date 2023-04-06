@@ -12,6 +12,11 @@ function App() {
   const [isCheckingAnswers, setIsCheckingAnswers] = useState(false)
 
   useEffect(() => {
+      fetchQuizData()
+      // eslint-disable-next-line
+  }, [])
+
+  function fetchQuizData() {
     fetch(`https://opentdb.com/api.php?amount=7&category=21&type=multiple`)
       .then(response => response.json())
       .then(data => {
@@ -22,8 +27,7 @@ function App() {
         const decodedData = decodeHtmlEntity(JSON.stringify(newDataObj))
         setApiData(decodedData)
       })
-    // eslint-disable-next-line
-  }, [])
+  }
 
   // starts the quiz
   function startQuiz() {
@@ -35,7 +39,12 @@ function App() {
   // sends the user back to the home page
   function playAgain() {
     setTimeout(() => {
+      // resetting state values
+      ANSWER_COUNT = 0
       setIsGameStarted(false)
+      setIsCheckingAnswers(false)
+      // fetching new data
+      fetchQuizData()
     }, 500)
   }
 
@@ -64,7 +73,6 @@ function App() {
         }
       })
     });
-    console.log(`You scored ${ANSWER_COUNT} / ${apiData.length} correct answers`)
   }
 
   const quizElements = apiData.map(({ question, choices, id }) => (
