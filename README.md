@@ -1,12 +1,10 @@
 # Quizzical - A Trivia App
 
-This app pulls seven Sports trivia questions from [Open Trivia Database](https://opentdb.com/ "Read Docs") and displays them as a short quiz
+Quizzical is a fun trivia app that tests your knowledge of sports. It features seven trivia questions pulled from the [Open Trivia Database](https://opentdb.com/ "Read Docs") and presents them in a short quiz format
 
-- A user can make a selection of answers then check the answers at the end.
+To play, simply select your answers and check them at the end. Quizzical will score your quiz and provide feedback on your performance. If you want to play again, you can do so easily
 
-- The App will score the quiz and give feedback, the user will be allowed to play again
-
-Try out the [Quizzical Fun Sports Trivia](https://quizzical-sports-trivia.netlify.app "play game") live demo
+Ready to test your sports knowledge? Try out the [Quizzical Fun Sports Trivia](https://quizzical-sports-trivia.netlify.app "play game") live demo
 
 ---
 
