@@ -6,6 +6,8 @@ This app pulls seven Sports trivia questions from [Open Trivia Database](https:/
 
 - The App will score the quiz and give feedback, the user will be allowed to play again
 
+Try out the [Quizzical Fun Sports Trivia](https://quizzical-sports-trivia.netlify.app "play game") live demo
+
 ---
 
 ## `he` Lightweight Package
