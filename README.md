@@ -6,7 +6,7 @@ To play, simply select your answers and check them at the end. Quizzical will sc
 
 Ready to test your sports knowledge? Try out the [Quizzical Fun Sports Trivia](https://quizzical-sports-trivia.netlify.app "play game") live demo
 
-<img width="60%" alt="home" src="https://user-images.githubusercontent.com/83452606/231093991-100f3f79-1473-4c00-aca2-8aa91bbcbf8d.png">
+<img width="60%" alt="home" src="https://user-images.githubusercontent.com/83452606/231095459-d841e8cd-cb3f-4489-a5b5-1106a1dcd124.png">
 
 <img width="60%" alt="questions" src="https://user-images.githubusercontent.com/83452606/231094044-bb8ca5f6-301d-48c2-a86d-325ef4f029ef.png">
 
