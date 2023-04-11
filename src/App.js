@@ -105,20 +105,22 @@ function App() {
               {quizElements}
               <button 
               type='button'
-              className='check-answers btn'
+              className='check--answers btn'
               onClick={() => checkAnswers()}
               >Check answers</button>
             </>  :
             <>
               {answerElements}
-              <h3>
-                {`You scored ${ANSWER_COUNT} / ${apiData.length} correct answers`}
-              </h3>
-              <button
-                type='button'
-                className='btn'
-                onClick={() => playAgain()}
-              >Play Again</button>
+              <div className='answers--footer'>
+                <h3>
+                  {`You scored ${ANSWER_COUNT} / ${apiData.length} correct answers`}
+                </h3>
+                <button
+                  type='button'
+                  className='btn'
+                  onClick={() => playAgain()}
+                >Play Again</button>
+              </div>
             </>
         }
       </main>
